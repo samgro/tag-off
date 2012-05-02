@@ -17,6 +17,8 @@
 		1011232E1549AB4800B10BEB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1011232D1549AB4800B10BEB /* ViewController.m */; };
 		101123351549AD8000B10BEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101123341549AD8000B10BEB /* CoreLocation.framework */; };
 		1030509D1550ADC3008DE2A1 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1030509C1550ADC3008DE2A1 /* RootViewController.m */; };
+		103050A01550B70C008DE2A1 /* stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1030509F1550B70C008DE2A1 /* stations.plist */; };
+		103050A31550BB4B008DE2A1 /* SelectStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 103050A21550BB4B008DE2A1 /* SelectStationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,9 @@
 		101123341549AD8000B10BEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1030509B1550ADC3008DE2A1 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		1030509C1550ADC3008DE2A1 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		1030509F1550B70C008DE2A1 /* stations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stations.plist; sourceTree = "<group>"; };
+		103050A11550BB4B008DE2A1 /* SelectStationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStationViewController.h; sourceTree = "<group>"; };
+		103050A21550BB4B008DE2A1 /* SelectStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +97,9 @@
 				1011232C1549AB4800B10BEB /* ViewController.h */,
 				1011232D1549AB4800B10BEB /* ViewController.m */,
 				1011231E1549AB4800B10BEB /* Supporting Files */,
+				1030509F1550B70C008DE2A1 /* stations.plist */,
+				103050A11550BB4B008DE2A1 /* SelectStationViewController.h */,
+				103050A21550BB4B008DE2A1 /* SelectStationViewController.m */,
 			);
 			path = "Tag Off";
 			sourceTree = "<group>";
@@ -160,6 +168,7 @@
 			files = (
 				101123221549AB4800B10BEB /* InfoPlist.strings in Resources */,
 				1011232B1549AB4800B10BEB /* MainStoryboard.storyboard in Resources */,
+				103050A01550B70C008DE2A1 /* stations.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +183,7 @@
 				101123281549AB4800B10BEB /* AppDelegate.m in Sources */,
 				1011232E1549AB4800B10BEB /* ViewController.m in Sources */,
 				1030509D1550ADC3008DE2A1 /* RootViewController.m in Sources */,
+				103050A31550BB4B008DE2A1 /* SelectStationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

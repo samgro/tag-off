@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>stations</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>SF 4th and King</string>
+			<key>latitude</key>
+			<real>37.7766599655</real>
+			<key>longitude</key>
+			<real>-122.3946000338</real>
+		</dict>
+	</array>
+</dict>
+</plist>
