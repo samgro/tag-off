@@ -16,6 +16,7 @@
 		1011232B1549AB4800B10BEB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 101123291549AB4800B10BEB /* MainStoryboard.storyboard */; };
 		1011232E1549AB4800B10BEB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1011232D1549AB4800B10BEB /* ViewController.m */; };
 		101123351549AD8000B10BEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101123341549AD8000B10BEB /* CoreLocation.framework */; };
+		1030509D1550ADC3008DE2A1 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1030509C1550ADC3008DE2A1 /* RootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		1011232C1549AB4800B10BEB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1011232D1549AB4800B10BEB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		101123341549AD8000B10BEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1030509B1550ADC3008DE2A1 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		1030509C1550ADC3008DE2A1 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,8 @@
 				101123261549AB4800B10BEB /* AppDelegate.h */,
 				101123271549AB4800B10BEB /* AppDelegate.m */,
 				101123291549AB4800B10BEB /* MainStoryboard.storyboard */,
+				1030509B1550ADC3008DE2A1 /* RootViewController.h */,
+				1030509C1550ADC3008DE2A1 /* RootViewController.m */,
 				1011232C1549AB4800B10BEB /* ViewController.h */,
 				1011232D1549AB4800B10BEB /* ViewController.m */,
 				1011231E1549AB4800B10BEB /* Supporting Files */,
@@ -168,6 +173,7 @@
 				101123241549AB4800B10BEB /* main.m in Sources */,
 				101123281549AB4800B10BEB /* AppDelegate.m in Sources */,
 				1011232E1549AB4800B10BEB /* ViewController.m in Sources */,
+				1030509D1550ADC3008DE2A1 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
