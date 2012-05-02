@@ -12,6 +12,38 @@
 			<key>longitude</key>
 			<real>-122.3946000338</real>
 		</dict>
+		<dict>
+			<key>name</key>
+			<string>SF 22nd St</string>
+			<key>latitude</key>
+			<real>37.7562799454</real>
+			<key>longitude</key>
+			<real>-122.3927999735</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Millbrae</string>
+			<key>latitude</key>
+			<real>37.597489953</real>
+			<key>longitude</key>
+			<real>-122.384559989</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Palo Alto (University Ave)</string>
+			<key>latitude</key>
+			<real>37.4436399937</real>
+			<key>longitude</key>
+			<real>-122.1650099754</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>California Ave (Palo Alto)</string>
+			<key>latitude</key>
+			<real>37.4288300276</real>
+			<key>longitude</key>
+			<real>-122.1411700249</real>
+		</dict>
 	</array>
 </dict>
 </plist>
