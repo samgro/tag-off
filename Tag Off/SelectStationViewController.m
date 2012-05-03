@@ -11,10 +11,7 @@
 
 @implementation SelectStationViewController
 
-// Strong
 @synthesize stations = _stations;
-
-// Weak
 @synthesize selection = _selection;
 @synthesize delegate = _delegate;
 
