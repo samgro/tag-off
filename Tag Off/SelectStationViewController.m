@@ -10,14 +10,19 @@
 
 @implementation SelectStationViewController
 
+// Strong
 @synthesize stations = _stations;
+
+// Weak
+@synthesize selection = _selection;
+@synthesize delegate = _delegate;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    // Load the stations list from disk when we create the view
     NSString *path = [[NSBundle mainBundle] pathForResource:@"stations" ofType:@"plist"];
-
     NSDictionary *stationsFile = [[NSDictionary alloc] initWithContentsOfFile:path];
     self.stations = [stationsFile objectForKey:@"stations"];
 }
@@ -26,6 +31,7 @@
 {
     [super viewDidUnload];
     
+    // Release strongly held pointers
     self.stations = nil;
 }
 
@@ -45,7 +51,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"# of stations: %d", self.stations.count);
     return self.stations.count;
 }
 
@@ -60,16 +65,21 @@
 }
 
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    // Save the selected station
+    if ([self.delegate respondsToSelector:@selector(setSelectedStation:)]) {
+        NSIndexPath *parentIndexPath = [self.selection objectForKey:@"indexPath"];
+        id stationData = [self.stations objectAtIndex:indexPath.row];
+        NSDictionary *selectedStation = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      parentIndexPath, @"indexPath",
+                                      stationData, @"station",
+                                      nil];
+        [self.delegate setValue:selectedStation forKey:@"selectedStation"];
+    }
+    
+    // Return to root view
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

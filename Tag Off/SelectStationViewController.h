@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootViewController.h"
 
 @interface SelectStationViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *stations;
+@property (copy, nonatomic) NSDictionary *selection;
+@property (weak, nonatomic) id delegate;
 
 @end

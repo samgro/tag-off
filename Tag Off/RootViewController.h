@@ -10,4 +10,7 @@
 
 @interface RootViewController : UITableViewController
 
+@property (strong, nonatomic) NSMutableArray *watchedStations;
+@property (copy, nonatomic) NSDictionary *selectedStation;
+
 @end
