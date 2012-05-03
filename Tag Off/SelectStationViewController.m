@@ -7,6 +7,7 @@
 //
 
 #import "SelectStationViewController.h"
+#import "Station.h"
 
 @implementation SelectStationViewController
 
@@ -22,9 +23,7 @@
     [super viewDidLoad];
 
     // Load the stations list from disk when we create the view
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"stations" ofType:@"plist"];
-    NSDictionary *stationsFile = [[NSDictionary alloc] initWithContentsOfFile:path];
-    self.stations = [stationsFile objectForKey:@"stations"];
+    self.stations = [Station stationListFromPList:@"stations"];
 }
 
 - (void)viewDidUnload
@@ -59,7 +58,7 @@
     static NSString *CellIdentifier = @"StationCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.textLabel.text = [[self.stations objectAtIndex:indexPath.row] objectForKey:@"name"];
+    cell.textLabel.text = [(Station *)[self.stations objectAtIndex:indexPath.row] name];
     
     return cell;
 }
@@ -68,14 +67,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Save the selected station
-    if ([self.delegate respondsToSelector:@selector(setSelectedStation:)]) {
+    if ([self.delegate respondsToSelector:@selector(setSelection:)]) {
         NSIndexPath *parentIndexPath = [self.selection objectForKey:@"indexPath"];
         id stationData = [self.stations objectAtIndex:indexPath.row];
         NSDictionary *selectedStation = [NSDictionary dictionaryWithObjectsAndKeys:
                                       parentIndexPath, @"indexPath",
                                       stationData, @"station",
                                       nil];
-        [self.delegate setValue:selectedStation forKey:@"selectedStation"];
+        [self.delegate setValue:selectedStation forKey:@"selection"];
     }
     
     // Return to root view

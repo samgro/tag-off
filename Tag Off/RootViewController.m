@@ -7,28 +7,75 @@
 //
 
 #import "RootViewController.h"
+#import "Station.h"
 
 #define STATIONS_TO_WATCH 2
 
+@interface RootViewController ()
+
+- (void)startMonitoringStation:(NSDictionary *)station;
+- (void)stopMonitoringStation:(NSDictionary *)station;
+
+@end
+
 @implementation RootViewController
 
-// Strong
+@synthesize locationManager = _locationManager;
 @synthesize watchedStations = _watchedStations;
+@synthesize selection = _selection;
 
-// Weak
-@synthesize selectedStation = _selectedStation;
-
-- (void)setSelectedStation:(NSDictionary *)selectedStation
+- (void)setSelection:(NSDictionary *)selection
 {
     // Update the UI when we select a new station
-    if (![selectedStation isEqualToDictionary:_selectedStation]) {
-        _selectedStation = selectedStation;
-        NSIndexPath *indexPath = [selectedStation objectForKey:@"indexPath"];
-        id newStation = [selectedStation objectForKey:@"station"];
+    if (![selection isEqualToDictionary:_selection]) {
+        [self stopMonitoringStation:[_selection objectForKey:@"station"]];
+        _selection = selection;
+        NSIndexPath *indexPath = [selection objectForKey:@"indexPath"];
+        id newStation = [selection objectForKey:@"station"];
         [self.watchedStations replaceObjectAtIndex:indexPath.row withObject:newStation];
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                               withRowAnimation:UITableViewRowAnimationNone];
+        [self startMonitoringStation:newStation];
     }
+}
+
+- (void)stopMonitoringStation:(NSDictionary *)station
+{
+    
+}
+
+// Register a region for watching when we enter within 200 meters / accuracy 100 meters
+#define REGION_RADIUS 200
+#define REGION_ACCURACY kCLLocationAccuracyHundredMeters
+- (void)startMonitoringStation:(NSDictionary *)station
+{
+//    NSLog(@"Registering...");
+//    
+//    // Do not create regions if support is unavailable or disabled.
+//    if (![CLLocationManager regionMonitoringAvailable] ||
+//        ![CLLocationManager regionMonitoringEnabled]) {
+//        return;
+//    }
+//    
+//    // Get the coordinate of the station
+//    CLLocationCoordinate2D coordinate;
+//    
+//    // If the radius is too large, registration fails automatically,
+//    // so clamp the radius to the max value.
+//    CLLocationDistance radius = REGION_RADIUS;
+//    if (radius > self.locationManager.maximumRegionMonitoringDistance) {
+//        radius = self.locationManager.maximumRegionMonitoringDistance;
+//    }
+//    
+//    // Create the region and start monitoring it.
+//    CLRegion* region = [[CLRegion alloc] initCircularRegionWithCenter:coordinate
+//                                                               radius:radius
+//                                                           identifier:identifier];
+//    [self.locationManager startMonitoringForRegion:region
+//                                   desiredAccuracy:REGION_ACCURACY];
+//    
+//    self.startLabel.text = @"Started!";
+//    NSLog(@"Monitoring started at %06f, %06f", coordinate.latitude, coordinate.longitude);
 }
 
 #pragma mark - View lifecycle
@@ -36,8 +83,12 @@
 {
     [super viewDidLoad];
     
+    // Initialize location manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    
     // Initialize an empty array of watched stations
-    NSDictionary *emptyStation = [[NSDictionary alloc] init];
+    Station *emptyStation = [[Station alloc] init];
     self.watchedStations = [[NSMutableArray alloc] initWithObjects:emptyStation, emptyStation, nil];
 }
 
@@ -46,6 +97,7 @@
     [super viewDidUnload];
     
     // Release strongly held pointers
+    self.locationManager = nil;
     self.watchedStations = nil;
 }
 
@@ -65,7 +117,7 @@
     // Set the selected station on the child
     if ([childController respondsToSelector:@selector(setSelection:)]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        NSDictionary *station = [self.watchedStations objectAtIndex:indexPath.row];
+        Station *station = [self.watchedStations objectAtIndex:indexPath.row];
         NSDictionary *selection = [NSDictionary dictionaryWithObjectsAndKeys:
                                    indexPath, @"indexPath",
                                    station, @"station",
@@ -94,10 +146,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Set its station appropriately - placeholder if empty
-    NSDictionary *station = [self.watchedStations objectAtIndex:indexPath.row];
-    NSString *stationName = [station objectForKey:@"name"];
-    if (stationName) {
-        cell.textLabel.text = stationName;
+    Station *station = [self.watchedStations objectAtIndex:indexPath.row];
+    if (station.name) {
+        cell.textLabel.text = station.name;
     }
     else {
         cell.textLabel.text = @"Select a station";

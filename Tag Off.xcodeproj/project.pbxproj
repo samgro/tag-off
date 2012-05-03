@@ -19,6 +19,7 @@
 		1030509D1550ADC3008DE2A1 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1030509C1550ADC3008DE2A1 /* RootViewController.m */; };
 		103050A01550B70C008DE2A1 /* stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1030509F1550B70C008DE2A1 /* stations.plist */; };
 		103050A31550BB4B008DE2A1 /* SelectStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 103050A21550BB4B008DE2A1 /* SelectStationViewController.m */; };
+		103050A615534896008DE2A1 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 103050A515534896008DE2A1 /* Station.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		1030509F1550B70C008DE2A1 /* stations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stations.plist; sourceTree = "<group>"; };
 		103050A11550BB4B008DE2A1 /* SelectStationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStationViewController.h; sourceTree = "<group>"; };
 		103050A21550BB4B008DE2A1 /* SelectStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStationViewController.m; sourceTree = "<group>"; };
+		103050A415534896008DE2A1 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		103050A515534896008DE2A1 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				1030509F1550B70C008DE2A1 /* stations.plist */,
 				103050A11550BB4B008DE2A1 /* SelectStationViewController.h */,
 				103050A21550BB4B008DE2A1 /* SelectStationViewController.m */,
+				103050A415534896008DE2A1 /* Station.h */,
+				103050A515534896008DE2A1 /* Station.m */,
 			);
 			path = "Tag Off";
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				1011232E1549AB4800B10BEB /* ViewController.m in Sources */,
 				1030509D1550ADC3008DE2A1 /* RootViewController.m in Sources */,
 				103050A31550BB4B008DE2A1 /* SelectStationViewController.m in Sources */,
+				103050A615534896008DE2A1 /* Station.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

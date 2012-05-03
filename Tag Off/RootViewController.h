@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface RootViewController : UITableViewController
+@interface RootViewController : UITableViewController <CLLocationManagerDelegate>
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSMutableArray *watchedStations;
-@property (copy, nonatomic) NSDictionary *selectedStation;
+@property (copy, nonatomic) NSDictionary *selection;
 
 @end
