@@ -195,6 +195,7 @@
 // Fire off a notification when we enter the watched region
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
+    NSLog(@"Notifying at %g, %g", region.center.latitude, region.center.longitude);
     [self showNotification];
 }
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
