@@ -11,8 +11,8 @@
 
 @interface RootViewController : UITableViewController <CLLocationManagerDelegate>
 
-@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSMutableArray *watchedStations;
-@property (copy, nonatomic) NSDictionary *selection;
+@property (weak, nonatomic) CLLocationManager *locationManager;
+@property (weak, nonatomic) NSDictionary *selection;
 
 @end

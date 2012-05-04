@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "Station.h"
+#import "AppDelegate.h"
 
 #define STATIONS_TO_WATCH 2
 
@@ -17,7 +18,6 @@
 - (NSString *)identifierForIndex:(NSInteger)index;
 - (void)startMonitoringStation:(Station *)station atIndex:(NSInteger)index;
 - (void)stopMonitoringStation:(Station *)station atIndex:(NSInteger)index;
-- (void)showNotification;
 
 @end
 
@@ -97,23 +97,13 @@
     NSLog(@"Monitoring stopped for station %@", station.name);
 }
 
-- (void)showNotification
-{
-    NSLog(@"Showing notification.");
-    UILocalNotification* notification = [[UILocalNotification alloc] init];
-    notification.alertBody = @"Tag off!!!";
-    notification.soundName = UILocalNotificationDefaultSoundName;
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-}
-
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     // Initialize location manager
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
+    self.locationManager = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).locationManager;
     
     // Initialize an empty array of watched stations
     Station *emptyStation = [[Station alloc] init];
@@ -125,7 +115,6 @@
     [super viewDidUnload];
     
     // Release strongly held pointers
-    self.locationManager = nil;
     self.watchedStations = nil;
 }
 
@@ -189,18 +178,6 @@
 {
     // Section header for the only section
     return @"Remind me to tag at...";
-}
-
-#pragma mark - CLLocationManagerDelegate methods
-// Fire off a notification when we enter the watched region
-- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
-{
-    NSLog(@"Notifying at %g, %g", region.center.latitude, region.center.longitude);
-    [self showNotification];
-}
-- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
-{
-    NSLog(@"Monitoring region failed with error: %@.", error);
 }
 
 @end
