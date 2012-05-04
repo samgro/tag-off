@@ -13,8 +13,9 @@
 
 @interface RootViewController ()
 
-- (void)startMonitoringStation:(NSDictionary *)station;
-- (void)stopMonitoringStation:(NSDictionary *)station;
+// Private methods
+- (void)startMonitoringStation:(Station *)station;
+- (void)stopMonitoringStation:(Station *)station;
 
 @end
 
@@ -28,7 +29,9 @@
 {
     // Update the UI when we select a new station
     if (![selection isEqualToDictionary:_selection]) {
-        [self stopMonitoringStation:[_selection objectForKey:@"station"]];
+        if (_selection != nil) {
+            [self stopMonitoringStation:[_selection objectForKey:@"station"]];
+        }
         _selection = selection;
         NSIndexPath *indexPath = [selection objectForKey:@"indexPath"];
         id newStation = [selection objectForKey:@"station"];
@@ -39,43 +42,45 @@
     }
 }
 
-- (void)stopMonitoringStation:(NSDictionary *)station
-{
-    
-}
-
 // Register a region for watching when we enter within 200 meters / accuracy 100 meters
 #define REGION_RADIUS 200
 #define REGION_ACCURACY kCLLocationAccuracyHundredMeters
-- (void)startMonitoringStation:(NSDictionary *)station
+- (void)startMonitoringStation:(Station *)station
 {
-//    NSLog(@"Registering...");
-//    
-//    // Do not create regions if support is unavailable or disabled.
-//    if (![CLLocationManager regionMonitoringAvailable] ||
-//        ![CLLocationManager regionMonitoringEnabled]) {
-//        return;
-//    }
-//    
-//    // Get the coordinate of the station
-//    CLLocationCoordinate2D coordinate;
-//    
-//    // If the radius is too large, registration fails automatically,
-//    // so clamp the radius to the max value.
-//    CLLocationDistance radius = REGION_RADIUS;
-//    if (radius > self.locationManager.maximumRegionMonitoringDistance) {
-//        radius = self.locationManager.maximumRegionMonitoringDistance;
-//    }
-//    
-//    // Create the region and start monitoring it.
-//    CLRegion* region = [[CLRegion alloc] initCircularRegionWithCenter:coordinate
-//                                                               radius:radius
-//                                                           identifier:identifier];
-//    [self.locationManager startMonitoringForRegion:region
-//                                   desiredAccuracy:REGION_ACCURACY];
-//    
-//    self.startLabel.text = @"Started!";
-//    NSLog(@"Monitoring started at %06f, %06f", coordinate.latitude, coordinate.longitude);
+    NSLog(@"Starting monitoring for station %@", station.name);
+    
+    // Do not create regions if support is unavailable or disabled.
+    if (![CLLocationManager regionMonitoringAvailable] ||
+        ![CLLocationManager regionMonitoringEnabled]) {
+        NSLog(@"Region monitoring failed unavailable");
+        return;
+    }
+    
+    // If the radius is too large, registration fails automatically,
+    // so clamp the radius to the max value.
+    CLLocationDistance radius = REGION_RADIUS;
+    if (radius > self.locationManager.maximumRegionMonitoringDistance) {
+        radius = self.locationManager.maximumRegionMonitoringDistance;
+    }
+    
+    // Create the region and start monitoring it.
+    CLRegion* region = [[CLRegion alloc] initCircularRegionWithCenter:station.coordinate
+                                                               radius:radius
+                                                           identifier:station.name];
+    [self.locationManager startMonitoringForRegion:region
+                                   desiredAccuracy:REGION_ACCURACY];
+    
+    NSLog(@"Monitoring started for station %@", station.name);
+}
+
+- (void)stopMonitoringStation:(Station *)station
+{
+    NSLog(@"Stopping monitoring for station %@", station.name);
+    CLRegion *region = [[CLRegion alloc] initCircularRegionWithCenter:station.coordinate
+                                                               radius:REGION_RADIUS
+                                                           identifier:station.name];
+    [self.locationManager stopMonitoringForRegion:region];
+    NSLog(@"Monitoring stopped for station %@", station.name);
 }
 
 #pragma mark - View lifecycle
