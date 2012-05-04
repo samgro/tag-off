@@ -14,8 +14,10 @@
 @interface RootViewController ()
 
 // Private methods
-- (void)startMonitoringStation:(Station *)station;
-- (void)stopMonitoringStation:(Station *)station;
+- (NSString *)identifierForIndex:(NSInteger)index;
+- (void)startMonitoringStation:(Station *)station atIndex:(NSInteger)index;
+- (void)stopMonitoringStation:(Station *)station atIndex:(NSInteger)index;
+- (void)showNotification;
 
 @end
 
@@ -29,23 +31,35 @@
 {
     // Update the UI when we select a new station
     if (![selection isEqualToDictionary:_selection]) {
-        if (_selection != nil) {
-            [self stopMonitoringStation:[_selection objectForKey:@"station"]];
-        }
-        _selection = selection;
+        // Get attributes from selection
         NSIndexPath *indexPath = [selection objectForKey:@"indexPath"];
         id newStation = [selection objectForKey:@"station"];
+
+        // Stop monitoring old selection if it exists
+        Station *oldStation = [self.watchedStations objectAtIndex:indexPath.row];
+        if (oldStation.name) {
+            [self stopMonitoringStation:oldStation atIndex:indexPath.row];
+        }
+        
+        // Replace selection
+        _selection = selection;
+        
         [self.watchedStations replaceObjectAtIndex:indexPath.row withObject:newStation];
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                               withRowAnimation:UITableViewRowAnimationNone];
-        [self startMonitoringStation:newStation];
+        [self startMonitoringStation:newStation atIndex:indexPath.row];
     }
+}
+
+- (NSString *)identifierForIndex:(NSInteger)index
+{
+    return [NSString stringWithFormat:@"station%d", index];
 }
 
 // Register a region for watching when we enter within 200 meters / accuracy 100 meters
 #define REGION_RADIUS 200
 #define REGION_ACCURACY kCLLocationAccuracyHundredMeters
-- (void)startMonitoringStation:(Station *)station
+- (void)startMonitoringStation:(Station *)station atIndex:(NSInteger)index
 {
     NSLog(@"Starting monitoring for station %@", station.name);
     
@@ -66,21 +80,30 @@
     // Create the region and start monitoring it.
     CLRegion* region = [[CLRegion alloc] initCircularRegionWithCenter:station.coordinate
                                                                radius:radius
-                                                           identifier:station.name];
+                                                           identifier:[self identifierForIndex:index]];
     [self.locationManager startMonitoringForRegion:region
                                    desiredAccuracy:REGION_ACCURACY];
     
     NSLog(@"Monitoring started for station %@", station.name);
 }
 
-- (void)stopMonitoringStation:(Station *)station
+- (void)stopMonitoringStation:(Station *)station atIndex:(NSInteger)index
 {
     NSLog(@"Stopping monitoring for station %@", station.name);
     CLRegion *region = [[CLRegion alloc] initCircularRegionWithCenter:station.coordinate
                                                                radius:REGION_RADIUS
-                                                           identifier:station.name];
+                                                           identifier:[self identifierForIndex:index]];
     [self.locationManager stopMonitoringForRegion:region];
     NSLog(@"Monitoring stopped for station %@", station.name);
+}
+
+- (void)showNotification
+{
+    NSLog(@"Showing notification.");
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    notification.alertBody = @"Tag off!!!";
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 #pragma mark - View lifecycle
@@ -167,4 +190,16 @@
     // Section header for the only section
     return @"Remind me to tag at...";
 }
+
+#pragma mark - CLLocationManagerDelegate methods
+// Fire off a notification when we enter the watched region
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    [self showNotification];
+}
+- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
+{
+    NSLog(@"Monitoring region failed with error: %@.", error);
+}
+
 @end
