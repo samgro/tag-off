@@ -24,9 +24,9 @@
 			<key>name</key>
 			<string>Millbrae</string>
 			<key>latitude</key>
-			<real>37.597489953</real>
+			<real>37.59994</real>
 			<key>longitude</key>
-			<real>-122.384559989</real>
+			<real>-122.38658</real>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -40,9 +40,9 @@
 			<key>name</key>
 			<string>California Ave (Palo Alto)</string>
 			<key>latitude</key>
-			<real>37.4288300276</real>
+			<real>37.42939</real>
 			<key>longitude</key>
-			<real>-122.1411700249</real>
+			<real>-122.14202</real>
 		</dict>
 	</array>
 </dict>

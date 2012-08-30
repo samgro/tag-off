@@ -56,9 +56,9 @@
     return [NSString stringWithFormat:@"station%d", index];
 }
 
-// Register a region for watching when we enter within 200 meters / accuracy 100 meters
-#define REGION_RADIUS 200
-#define REGION_ACCURACY kCLLocationAccuracyHundredMeters
+// Register a region for watching when we enter
+#define REGION_RADIUS 300
+#define REGION_ACCURACY kCLLocationAccuracyNearestTenMeters
 - (void)startMonitoringStation:(Station *)station atIndex:(NSInteger)index
 {
     NSLog(@"Starting monitoring for station %@", station.name);
