@@ -7,8 +7,9 @@
 //
 
 #import "RootViewController.h"
-#import "Station.h"
 #import "AppDelegate.h"
+#import "Station.h"
+#import "WatchList.h"
 
 #define STATIONS_TO_WATCH 2
 
@@ -118,6 +119,13 @@
     self.watchedStations = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -163,7 +171,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Set its station appropriately - placeholder if empty
-    Station *station = [self.watchedStations objectAtIndex:indexPath.row];
+    Station *station = [[WatchList instance].stations objectAtIndex:indexPath.row];
     if (station.name) {
         cell.textLabel.text = station.name;
     }

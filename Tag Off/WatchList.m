@@ -9,6 +9,7 @@
 //
 
 #import "WatchList.h"
+#import "Station.h"
 
 @implementation WatchList
 @synthesize stations = _stations;
@@ -25,7 +26,17 @@
 
 - (void)setStation:(Station *)station atIndex:(NSInteger)index
 {
-    
+    [self.stations replaceObjectAtIndex:index withObject:station];
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        Station *emptyStation = [[Station alloc] init];
+        self.stations = [NSMutableArray arrayWithObjects:emptyStation, emptyStation, nil];
+    }
+    return self;
 }
 
 @end

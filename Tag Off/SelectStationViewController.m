@@ -8,6 +8,7 @@
 
 #import "SelectStationViewController.h"
 #import "Station.h"
+#import "WatchList.h"
 
 @implementation SelectStationViewController
 
@@ -63,16 +64,12 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Save the selected station
-    if ([self.delegate respondsToSelector:@selector(setSelection:)]) {
-        NSIndexPath *parentIndexPath = [self.selection objectForKey:@"indexPath"];
-        id stationData = [self.stations objectAtIndex:indexPath.row];
-        NSDictionary *selectedStation = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      parentIndexPath, @"indexPath",
-                                      stationData, @"station",
-                                      nil];
-        [self.delegate setValue:selectedStation forKey:@"selection"];
-    }
+    // Update watch list with selected station
+    NSInteger stationIndex = indexPath.row;
+    NSIndexPath *selectionIndexPath = [self.selection objectForKey:@"indexPath"];
+    NSInteger watchListIndex = selectionIndexPath.row;
+    [[WatchList instance] setStation:[self.stations objectAtIndex:stationIndex]
+                             atIndex:watchListIndex];
     
     // Return to root view
     [self.navigationController popViewControllerAnimated:YES];

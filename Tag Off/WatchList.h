@@ -18,6 +18,6 @@
 - (void)setStation:(Station *)station
            atIndex:(NSInteger)index;
 
-@property (strong, nonatomic) NSArray *stations;
+@property (strong, nonatomic) NSMutableArray *stations;
 
 @end
