@@ -2,6 +2,8 @@
 //  Station.h
 //  Tag Off
 //
+//  Model for a CalTrain station
+//
 //  Created by Samuel Grossberg on 5/3/12.
 //  Copyright (c) 2012 Samuel Grossberg. All rights reserved.
 //

@@ -19,6 +19,7 @@
 		103050A01550B70C008DE2A1 /* stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1030509F1550B70C008DE2A1 /* stations.plist */; };
 		103050A31550BB4B008DE2A1 /* SelectStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 103050A21550BB4B008DE2A1 /* SelectStationViewController.m */; };
 		103050A615534896008DE2A1 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 103050A515534896008DE2A1 /* Station.m */; };
+		10735FAB15EEFD3D004A9427 /* WatchList.m in Sources */ = {isa = PBXBuildFile; fileRef = 10735FAA15EEFD3D004A9427 /* WatchList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		103050A21550BB4B008DE2A1 /* SelectStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStationViewController.m; sourceTree = "<group>"; };
 		103050A415534896008DE2A1 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
 		103050A515534896008DE2A1 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		10735FA915EEFD3D004A9427 /* WatchList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchList.h; sourceTree = "<group>"; };
+		10735FAA15EEFD3D004A9427 /* WatchList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				103050A21550BB4B008DE2A1 /* SelectStationViewController.m */,
 				103050A415534896008DE2A1 /* Station.h */,
 				103050A515534896008DE2A1 /* Station.m */,
+				10735FA915EEFD3D004A9427 /* WatchList.h */,
+				10735FAA15EEFD3D004A9427 /* WatchList.m */,
 			);
 			path = "Tag Off";
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				1030509D1550ADC3008DE2A1 /* RootViewController.m in Sources */,
 				103050A31550BB4B008DE2A1 /* SelectStationViewController.m in Sources */,
 				103050A615534896008DE2A1 /* Station.m in Sources */,
+				10735FAB15EEFD3D004A9427 /* WatchList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

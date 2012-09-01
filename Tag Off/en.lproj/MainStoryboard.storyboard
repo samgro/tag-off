@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Q1a-Ob-r3J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Q1a-Ob-r3J">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
     </dependencies>
     <scenes>
         <!--Root View Controller - Tag Off-->
@@ -14,7 +13,21 @@
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="mjr-bJ-oS9">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.89670360331632648" green="0.89670360331632648" blue="0.89670360331632648" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="sKQ-sX-mE1">
+                            <rect key="frame" x="0.0" y="102" width="320" height="74"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Select two stations, and we'll remind you to tag on or off at both!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Ygg-37-JJ3">
+                                    <rect key="frame" x="20" y="0.0" width="280" height="54"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.89670360329999999" green="0.89670360329999999" blue="0.89670360329999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StationCell" textLabel="fZc-fV-xDF" style="IBUITableViewCellStyleDefault" id="lxf-mT-EUW">
                                 <rect key="frame" x="0.0" y="46" width="320" height="46"/>
@@ -44,7 +57,11 @@
                             <outlet property="delegate" destination="x46-jv-ygm" id="skl-NA-Rfd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tag Off" id="YuB-kZ-HlD"/>
+                    <navigationItem key="navigationItem" title="Tag Off" id="YuB-kZ-HlD">
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="QqI-Eg-My0">
+                            <color key="tintColor" red="0.79649633289999999" green="0.11513125890000001" blue="0.080543872370000005" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="606" y="-140"/>
@@ -89,6 +106,17 @@
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1013" y="-140"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="Gik-vD-847">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NBz-tH-8QV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="Ob1-dL-iQy" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="JZq-DA-R3g"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1378" y="440"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uyG-7X-EnR">
